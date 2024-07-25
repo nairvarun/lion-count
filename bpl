@@ -7,21 +7,21 @@ def main():
     parser = argparse.ArgumentParser(description="Process some integers.")
     parser.add_argument(
         "file",
-        metavar="F",
+        metavar="file",
         type=str,
         nargs=1,
         help="input file",
     )
     parser.add_argument(
         "sheet",
-        metavar="S",
+        metavar="sheet",
         type=str,
         nargs=1,
         help="input file",
     )
     parser.add_argument(
         "column",
-        metavar="C",
+        metavar="column",
         type=str,
         nargs=1,
         help="input file",
