@@ -1,6 +1,7 @@
 #!/bin/python
 import pandas
 import argparse
+import re
 
 
 def main():
@@ -12,27 +13,34 @@ def main():
         nargs=1,
         help="input file",
     )
-    parser.add_argument(
-        "sheet",
-        metavar="sheet",
-        type=str,
-        nargs=1,
-        help="input file",
-    )
-    parser.add_argument(
-        "column",
-        metavar="column",
-        type=str,
-        nargs=1,
-        help="input file",
-    )
-    args = parser.parse_args()
-    df = pandas.read_excel(args.file[0], sheet_name=args.sheet[0])
+    # parser.add_argument(
+    #     "sheet",
+    #     metavar="sheet",
+    #     type=str,
+    #     nargs=1,
+    #     help="input file",
+    # )
+    # parser.add_argument(
+    #     "column",
+    #     metavar="column",
+    #     type=str,
+    #     nargs=1,
+    #     help="input file",
+    # )
 
-    matched_lines = df[df[args.column[0]].str.match(r"\d{2}[A-Z]{3}\d{5}")]
-    matched_lines.reset_index(drop=True, inplace=True)
-    matched_lines.index += 1
-    print(matched_lines.to_string())
+    args = parser.parse_args()
+    # df = pandas.read_excel(args.file[0], sheet_name=args.sheet[0])
+    df = pandas.read_excel(args.file[0])
+    for col in df.columns:
+        val = str(df[col].iloc[0])
+        if re.match(r"\d{2}[A-Z]{3}\d{1,5}", val) is None:
+            continue
+
+        matched_lines = df[df[col].str.match(r"\d{2}[A-Z]{3}\d{5}")]
+        matched_lines.reset_index(drop=True, inplace=True)
+        matched_lines.index += 1
+        print(matched_lines.to_string())
+        break
 
 
 if __name__ == "__main__":
