@@ -29,9 +29,11 @@ def main():
     args = parser.parse_args()
     df = pandas.read_excel(args.file[0], sheet_name=args.sheet[0])
 
-    # .to_string()
-    matched_lines = df[df[args.column[0]].str.match(r"21[A-Z]{3}\d{5}")]
-    print(matched_lines)
+    matched_lines = df[df[args.column[0]].str.match(r"\d{2}[A-Z]{3}\d{5}")]
+    matched_lines.reset_index(drop=True, inplace=True)
+    matched_lines.index += 1
+    print(matched_lines.to_string())
+
 
 if __name__ == "__main__":
     main()
