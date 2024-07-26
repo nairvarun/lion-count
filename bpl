@@ -1,5 +1,5 @@
 #!/bin/python
-import pandas
+import pandas as pd
 import argparse
 import re
 
@@ -29,8 +29,8 @@ def main():
     # )
 
     args = parser.parse_args()
-    # df = pandas.read_excel(args.file[0], sheet_name=args.sheet[0])
-    df = pandas.read_excel(args.file[0])
+    # df = pd.read_excel(args.file[0], sheet_name=args.sheet[0])
+    df = pd.read_excel(args.file[0])
     for col in df.columns:
         val = str(df[col].iloc[0])
         if re.match(r"\d{2}[A-Z]{3}\d{1,5}", val) is None:
