@@ -13,20 +13,6 @@ def main():
         nargs=1,
         help="input file",
     )
-    # parser.add_argument(
-    #     "sheet",
-    #     metavar="sheet",
-    #     type=str,
-    #     nargs=1,
-    #     help="input file",
-    # )
-    # parser.add_argument(
-    #     "column",
-    #     metavar="column",
-    #     type=str,
-    #     nargs=1,
-    #     help="input file",
-    # )
 
     args = parser.parse_args()
     # df = pd.read_excel(args.file[0], sheet_name=args.sheet[0])
