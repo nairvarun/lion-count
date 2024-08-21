@@ -22,7 +22,7 @@ def main():
         if re.match(r"\d{2}[A-Z]{3}\d{1,5}", val) is None:
             continue
 
-        matched_lines = df[df[col].str.match(r"\d{2}[A-Z]{3}\d{5}")]
+        matched_lines = df[df[col].str.match(r"\d{2}[A-Z]{3}\d{5}", na=False)]
         matched_lines.reset_index(drop=True, inplace=True)
         matched_lines.index += 1
         print(matched_lines.to_string())
