@@ -19,7 +19,7 @@ def main():
     df = pd.read_excel(args.file[0])
     for col in df.columns:
         val = str(df[col].iloc[0])
-        if re.match(r"\d{2}[A-Z]{3}\d{1,5}", val) is None:
+        if re.match(r"\d{2}\w{3}\d{1,5}", val) is None:
             continue
 
         matched_lines = df[df[col].str.match(r"\d{2}[A-Z]{3}\d{5}", na=False)]

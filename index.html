@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+  <title>lion-grep</title>
+</head>
+
+<body>
+  <input type="file" id="fileUpload" />
+  <br>
+  <textarea id="all-students"></textarea>
+  <button id="count-lions">count</button>
+  <br>
+  <div id="lions"></div>
+</body>
+
+<script>
+  document.getElementById('count-lions').addEventListener('click', function (e) {
+    const allStudents = document.getElementById('all-students').value.split('\n');
+    var lions = [];
+    const lionRegex = new RegExp('\\d{2}\\w{3}\\d{5}', 'g');
+    allStudents.forEach(element => {
+      if (lionRegex.test(element)) {
+        lions.push(element.split(' ').filter((e) => e != ''));
+      }
+    });
+    console.log(lions);
+    document.getElementById('lions').innerHTML = array_to_table(lions);
+  });
+
+  document.getElementById('fileUpload').addEventListener('change', function (e) {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      const data = new Uint8Array(e.target.result);
+      const workbook = XLSX.read(data, { type: 'array' });
+
+      // Get the first worksheet
+      const firstSheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[firstSheetName];
+
+      // Convert worksheet to JSON
+      const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+      // Process the JSON data
+      const lions = getLions(jsonData);
+      document.getElementById('lions').innerHTML = array_to_table(lions);
+    };
+
+    reader.readAsArrayBuffer(file);
+  });
+
+  function getLions(jsonData) {
+    const regex = new RegExp('\\d{2}\\w{3}\\d{4,5}');
+    for (let i = 0; i < jsonData[1].length; i++) {
+      if (regex.test(jsonData[1][i])) {
+        var regNumCol = i;
+        break;
+      }
+    }
+
+    var lions = [];
+    const lionRegex = new RegExp('\\d{2}\\w{3}\\d{5}');
+    for (let i = 1; i < jsonData.length; i++) {
+      const element = jsonData[i][regNumCol];
+      if (lionRegex.test(element.trim())) {
+        lions.push(jsonData[i]);
+      }
+    }
+    return lions;
+  }
+
+  function array_to_table(lions) {
+    var table = '<table>';
+    var count = 1;
+    lions.forEach(lion => {
+      table += '<tr>';
+      table += `<td>${count}</td>`;
+      count++;
+      lion.forEach(element => {
+        table += `<td>${element}</td>`;
+      });
+      table += '</tr>';
+    });
+    table += '</table>';
+    return table;
+  }
+</script>
+
+</html>
