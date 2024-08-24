@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="index.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
-  <title>lion-grep</title>
-</head>
-
-<body>
-  <input type="file" id="fileUpload"/>
-  <label for="fileUpload">
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 258.4000244140625 122.4000244140625"
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 258.4000244140625 122.4000244140625"
     width="258.4000244140625" height="122.4000244140625">
     <!-- svg-source:excalidraw -->
 
@@ -65,13 +50,3 @@
       </path>
     </g>
   </svg>
-
-  </label>
-  <textarea id="textInput"></textarea>
-  <button id="countBtn">count</button>
-  <div id="lions"></div>
-</body>
-
-<script src="index.js"></script>
-
-</html>
