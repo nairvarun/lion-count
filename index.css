@@ -87,6 +87,10 @@ body {
 	display: none;
 }
 
+.acme-menubar__button {
+	cursor: inherit;
+}
+
 .acme-menubar__button:hover {
 	cursor: inherit;
 	background-color: rgba(159, 239, 239, 1);
@@ -140,45 +144,4 @@ body {
 .custom-cm__item:hover {
 	color: rgba(237, 254, 235, 1);
 	background-color: rgba(73, 135, 70, 1);
-}
-
-.custom-alert {
-	background-color: rgba(237, 254, 235, 1);
-	border: solid rgba(140, 195, 135, 1);
-	font-size: 25px;
-	cursor: inherit;
-	font-family: inherit;
-	max-width: fit-content;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	display: flex;
-	flex-direction: column;
-	padding: 1%;
-	visibility: hidden;
-}
-
-.custom-alert__message {
-	margin: auto;
-}
-
-.custom-alert__button-container {
-	margin: auto;
-	padding-top: 3%;
-}
-
-.custom-alert__button {
-	background-color: rgba(136, 136, 204, 1);
-	font-size: 25px;
-	cursor: inherit;
-	font-family: inherit;
-}
-
-.custom-alert__button:hover {
-	background-color: rgba(136, 136, 204, 0.7);
-}
-
-.custom-alert__button:active {
-	background-color: rgba(136, 136, 204, 1);
 }
