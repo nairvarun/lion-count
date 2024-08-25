@@ -50,13 +50,11 @@ body {
 	flex: 1;
 }
 
-.acme-titlebar,
 .acme-menubar {
 	cursor: inherit;
 	border: solid rgba(0, 0, 0, 1);
 }
 
-.acme-titlebar__title,
 .acme-menubar__menu,
 .acme-editor__text-area {
 	cursor: inherit;
@@ -71,11 +69,6 @@ body {
 	height: 100%;
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
-}
-
-.acme-titlebar__title {
-	background-color: rgba(234, 255, 255, 1);
-	font-size: 40px;
 }
 
 .acme-menubar__menu {
@@ -100,18 +93,15 @@ body {
 	cursor: inherit;
 }
 
-.acme-titlebar__title:focus,
 .acme-menubar__menu:focus,
 .acme-editor__text-area:focus {
 	outline: none;
 }
 
-.acme-titlebar__title::selection,
 .acme-menubar__menu::selection {
 	background-color: rgba(159, 239, 239, 1);
 }
 
-.acme-titlebar__title::-moz-selection,
 .acme-menubar__menu::-moz-selection {
 	background-color: rgba(159, 239, 239, 1);
 }
