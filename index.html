@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./index.css">
+	<title>lion count</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+
+</head>
+
+<body>
+	<div class="acme-container">
+		<div class="acme-titlebar">
+			<div class="acme-titlebar__title">🦁</div>
+		</div>
+		<div class="acme-menubar">
+			<div class="acme-menubar__menu">
+				<input type="file" id="acme-menubar__fileUpload">
+				<label for="acme-menubar__fileUpload" class="acme-menubar__button" id="acme-menubar__fileUploadLabel">upload</label>
+				&NonBreakingSpace;|&NonBreakingSpace;
+				<label class="acme-menubar__button count-button" id="acme-menubar__countFromText" >count</label>
+			</div>
+		</div>
+		<div class="acme-editor">
+			<textarea class="acme-editor__text-area" id="primary-output" spellcheck="false"
+				placeholder="paste data here..."></textarea>
+		</div>
+	</div>
+	<div class="custom-cm">
+		<label for="acme-menubar__fileUpload" class="custom-cm__item">upload</label>
+		<div class="custom-cm__item count-button">count</div>
+		<div class="custom-cm__item">clear</div>
+		<div class="custom-cm__item">github</div>
+	</div>
+</body>
+<script src="./index.js"></script>
+
+</html>
