@@ -59,7 +59,7 @@ Object.values(document.getElementsByClassName('count-button')).forEach(element =
     element.addEventListener('click', function (e) {
         const allStudents = document.getElementById('primary-output').value.split('\n');
 
-        const regex = new RegExp('\\d{2}[A-Za-z]{3}\\d{5}');
+        const regex = new RegExp('\\d{2}[A-Za-z]{3}\\d{5}\\D');
         var lions = [];
 
         // parse input text into array of arrays containing lion data
@@ -107,19 +107,22 @@ function getLions(jsonData) {
 
     // find lions and store into array of arrays
     var lions = [];
-    const lionRegex = new RegExp('\\d{2}[A-Za-z]{3}\\d{5}');
-    for (let i = 1; i < jsonData.length; i++) {
-        const element = jsonData[i][regNumCol];
-        if (lionRegex.test(element.trim())) {
-            lions.push(jsonData[i]);
+    if (lions.length == 0) {
+        return lions;
+    } else {
+        const lionRegex = new RegExp('\\d{2}[A-Za-z]{3}\\d{5}\\D');
+        for (let i = 1; i < jsonData.length; i++) {
+            const element = jsonData[i][regNumCol];
+            if (lionRegex.test(element.trim())) {
+                lions.push(jsonData[i]);
+            }
         }
+        return lions;
     }
-    return lions;
 }
 
 // turn array of arrays in to html tables
 function array_to_table(lions) {
-    // var table = '<table>';
     var table = '';
     var count = 1;
     lions.forEach(lion => {
@@ -134,6 +137,11 @@ function array_to_table(lions) {
 }
 
 function setLions(lions) {
-    document.getElementById('primary-output').value = array_to_table(lions);
+    const output_area = document.getElementById('primary-output');
+    if (lions.length == 0) {
+        output_area.value = 'no lions found :( (or no registration numbers provided)'
+    } else {
+        output_area.value = array_to_table(lions);
+    }
     document.getElementById('acme-menubar__fileUpload').value = "";
 }
